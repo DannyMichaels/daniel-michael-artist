@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Gallery from '../components/Gallery';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import Seo from '../components/seo';
@@ -16,6 +17,10 @@ const IndexPage = () => (
     <PageBreak />
 
     <MusicCatalog />
+
+    <PageBreak />
+
+    <Gallery />
   </Layout>
 );
 
