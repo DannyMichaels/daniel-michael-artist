@@ -3,12 +3,19 @@ import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import Seo from '../components/seo';
 import Videos from '../components/Videos';
+import MusicCatalog from './../components/MusicCatalog';
 
 const IndexPage = () => (
   <Layout>
     <Hero />
+
     <PageBreak />
+
     <Videos />
+
+    <PageBreak />
+
+    <MusicCatalog />
   </Layout>
 );
 
