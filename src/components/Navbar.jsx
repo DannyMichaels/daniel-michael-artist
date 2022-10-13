@@ -1,7 +1,6 @@
 import { StaticImage } from 'gatsby-plugin-image';
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { socialLinks } from '../utils/socialLinks';
 
 export default function Navbar() {
   const [isBackgroundShowing, setIsBackgroundShowing] = useState(false);
@@ -21,7 +20,7 @@ export default function Navbar() {
 
   return (
     <StyledNav isBackgroundShowing={isBackgroundShowing}>
-      <div className="nav__container">
+      <div className="nav__container inner-column">
         <div className="nav__logo">
           <h1>Daniel Michael</h1>
         </div>
@@ -32,7 +31,10 @@ export default function Navbar() {
                 href="https://www.facebook.com/DanielVocals"
                 target="_blank"
                 rel="no-referrer">
-                <StaticImage src="../assets/icons/facebook.svg" />
+                <StaticImage
+                  src="../assets/icons/facebook.svg"
+                  layout="fixed"
+                />
               </a>
             </li>
 
@@ -41,7 +43,10 @@ export default function Navbar() {
                 href="https://www.instagram.com/_dannymichaels/"
                 target="_blank"
                 rel="no-referrer">
-                <StaticImage src="../assets/icons/instagram.svg" />
+                <StaticImage
+                  src="../assets/icons/instagram.svg"
+                  layout="fixed"
+                />
               </a>
             </li>
 
@@ -50,7 +55,7 @@ export default function Navbar() {
                 href="https://www.youtube.com/c/DanielMichael"
                 target="_blank"
                 rel="no-referrer">
-                <StaticImage src="../assets/icons/youtube.svg" />
+                <StaticImage src="../assets/icons/youtube.svg" layout="fixed" />
               </a>
             </li>
           </ul>

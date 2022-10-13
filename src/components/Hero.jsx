@@ -6,36 +6,40 @@ import Button from './Button';
 function Hero() {
   return (
     <HeroContainer>
-      <StaticImage
-        src="../assets/images/hero.svg"
-        alt="portfolio"
-        className="hero-img"
-        placeholder="tracedSVG"
-        layout="fullWidth"
-      />
+      <div className="hero__inner">
+        <StaticImage
+          src="../assets/images/hero.svg"
+          alt="portfolio"
+          className="hero-img"
+          placeholder="tracedSVG"
+          layout="fullWidth"
+        />
 
-      <HeroBackground />
+        <HeroBackground />
 
-      <HeroTextContainer>
-        <div className="hero-text">
-          <h1>Daniel Michael</h1>
-          <h4>Singer | Song Writer | Producer | Performer</h4>
-        </div>
-        <div className="hero-btn">
-          <Button text="Contact Me" />
-        </div>
-      </HeroTextContainer>
+        <HeroTextContainer>
+          <div className="hero-text">
+            <h1>Daniel Michael</h1>
+            <h4>Singer | Song Writer | Producer | Performer</h4>
+          </div>
+          <div className="hero-btn">
+            <Button text="Contact Me" />
+          </div>
+        </HeroTextContainer>
+      </div>
     </HeroContainer>
   );
 }
 
 const HeroContainer = styled.div`
-  height: 100vh;
-  position: relative;
-  margin-bottom: 2rem;
+  .hero__inner {
+    height: 100vh;
+    position: relative;
+    margin-bottom: 2rem;
 
-  .hero-img {
-    height: 100%;
+    .hero-img {
+      height: 100%;
+    }
   }
 `;
 
