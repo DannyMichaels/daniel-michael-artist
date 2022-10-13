@@ -35,7 +35,6 @@ const HeroContainer = styled.div`
   .hero__inner {
     height: 100vh;
     position: relative;
-    margin-bottom: 2rem;
 
     .hero-img {
       height: 100%;

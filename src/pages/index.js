@@ -1,22 +1,19 @@
 import * as React from 'react';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
-import SectionTitle from '../components/SectionTitle';
 import Seo from '../components/seo';
+import Videos from '../components/Videos';
 
 const IndexPage = () => (
   <Layout>
     <Hero />
-
-    <section className="page-section">
-      <div className="inner-column">
-        <SectionTitle
-          title="My video shows"
-          subtitle="Watch the latest videos and subscribe on youtube."
-        />
-      </div>
-    </section>
+    <PageBreak />
+    <Videos />
   </Layout>
+);
+
+const PageBreak = () => (
+  <div style={{ flexGrow: 1, display: 'flex', padding: '50px' }}></div>
 );
 
 /**
