@@ -1,10 +1,11 @@
 import * as React from 'react';
+import Contact from '../components/Contact';
 import Gallery from '../components/Gallery';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import Seo from '../components/seo';
 import Videos from '../components/Videos';
-import MusicCatalog from './../components/MusicCatalog';
+import MusicCatalog from '../components/MusicCatalog';
 
 const IndexPage = () => (
   <Layout>
@@ -21,6 +22,10 @@ const IndexPage = () => (
     <PageBreak />
 
     <Gallery />
+
+    <PageBreak />
+
+    <Contact />
   </Layout>
 );
 
