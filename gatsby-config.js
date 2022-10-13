@@ -31,6 +31,13 @@ module.exports = {
         path: `${__dirname}/src/assets/icons`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `album-covers`,
+        path: `${__dirname}/src/assets/album-covers`,
+      },
+    },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
