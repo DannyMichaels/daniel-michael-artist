@@ -51,7 +51,6 @@ const Grid = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 29px;
   margin-top: 44px;
-  grid-auto-rows: minmax(336px, 336px);
 `;
 
 export default Gallery;
