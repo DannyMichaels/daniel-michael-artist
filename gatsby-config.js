@@ -7,7 +7,8 @@ module.exports = {
     title: `Daniel Michael`,
     description: `Daniel Michael's artist website`,
     author: `@dannymichaels`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    siteUrl: `https://www.danielmichaelmusic.com/`,
+    image: './src/gallery/1.jpeg',
   },
   plugins: [
     {
