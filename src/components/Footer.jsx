@@ -3,6 +3,7 @@ import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import SocialLinks from './SocialLinks';
 import Button from './Button';
+import { onContactButtonClick } from '../utils/onContactButtonClick';
 
 function Footer() {
   return (
@@ -27,7 +28,7 @@ function Footer() {
           </div>
 
           <div className="center">
-            <Button text="Say Hello!" />
+            <Button text="Say Hello!" onClick={onContactButtonClick} />
           </div>
         </FooterContent>
       </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import Button from './Button';
+import { onContactButtonClick } from '../utils/onContactButtonClick';
 
 function Hero() {
   return (
@@ -23,7 +24,7 @@ function Hero() {
             <h4>Singer | Song Writer | Producer | Performer</h4>
           </div>
           <div className="hero-btn">
-            <Button text="Contact Me" />
+            <Button text="Contact Me" onClick={onContactButtonClick} />
           </div>
         </HeroTextContainer>
       </div>

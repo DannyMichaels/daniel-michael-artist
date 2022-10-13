@@ -7,28 +7,26 @@ function SocialLinks() {
     <Ul>
       <li>
         <a
+          href="https://www.youtube.com/c/DanielMichael"
+          target="_blank"
+          rel="no-referrer">
+          <StaticImage src="../assets/icons/youtube.svg" layout="fixed" />
+        </a>
+      </li>
+      <li>
+        <a
           href="https://www.facebook.com/DanielVocals"
           target="_blank"
           rel="no-referrer">
           <StaticImage src="../assets/icons/facebook.svg" layout="fixed" />
         </a>
       </li>
-
       <li>
         <a
           href="https://www.instagram.com/_dannymichaels/"
           target="_blank"
           rel="no-referrer">
           <StaticImage src="../assets/icons/instagram.svg" layout="fixed" />
-        </a>
-      </li>
-
-      <li>
-        <a
-          href="https://www.youtube.com/c/DanielMichael"
-          target="_blank"
-          rel="no-referrer">
-          <StaticImage src="../assets/icons/youtube.svg" layout="fixed" />
         </a>
       </li>
     </Ul>
