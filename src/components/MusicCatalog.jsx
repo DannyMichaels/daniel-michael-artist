@@ -5,6 +5,25 @@ import SectionTitle from './SectionTitle';
 import { graphql, useStaticQuery } from 'gatsby';
 import { getImage } from 'gatsby-plugin-image';
 import Button from './Button';
+import SpotifyEmbed from './SpotifyEmbed';
+import SoundcloudEmbed from './SoundcloudEmbed';
+import AppleMusicEmbed from './AppleMusicEmbed';
+
+function MusicCatalog() {
+  return (
+    <section className="page-section music">
+      <div className="inner-column">
+        <SectionTitle title="Music" />
+
+        <Grid>
+          <SpotifyEmbed />
+          <SoundcloudEmbed />
+          <AppleMusicEmbed />
+        </Grid>
+      </div>
+    </section>
+  );
+}
 
 const query = graphql`
   query GetSongCovers {
@@ -25,36 +44,35 @@ const TITLES = {
   give: 'Give',
 };
 
-function MusicCatalog() {
+const __Old = () => {
   const data = useStaticQuery(query);
   const nodes = data.allFile.nodes;
 
   return (
-    <section className="page-section music">
-      <Centered className="inner-column">
-        <SectionTitle title="My Music Player" />
+    <Centered className="inner-column">
+      <SectionTitle title="My Music Player" />
 
-        <Grid>
-          {nodes.map((node) => {
-            const { name, id, childImageSharp: image } = node;
-            const title = TITLES[name];
-            const imageSrc = getImage(image);
+      <Grid>
+        {nodes.map((node) => {
+          const { name, id, childImageSharp: image } = node;
+          const title = TITLES[name];
+          const imageSrc = getImage(image);
 
-            return <MusicCard key={id} title={title} imageSrc={imageSrc} />;
-          })}
-        </Grid>
+          return <MusicCard key={id} title={title} imageSrc={imageSrc} />;
+        })}
+      </Grid>
 
-        <Centered style={{ marginTop: '20px' }}>
-          <Button text="View More" />
-        </Centered>
+      <Centered style={{ marginTop: '20px' }}>
+        <Button text="View More" />
       </Centered>
-    </section>
+    </Centered>
   );
-}
+};
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr; */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-gap: 20px;
   margin-top: 48px;
 `;

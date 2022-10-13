@@ -18,7 +18,6 @@ function Contact() {
               name="name"
               placeholder="Enter your name"
               required
-              style={{ marginRight: '24px' }}
             />
 
             <label htmlFor="email" className="form__label" />
@@ -33,7 +32,7 @@ function Contact() {
             <label htmlFor="message" className="form__label" />
             <TextArea
               name="message"
-              className="form__input"
+              className="form__textarea"
               placeholder="How can I help you?"
             />
           </div>
@@ -76,6 +75,25 @@ const Form = styled.form`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+  }
+
+  .form__input:first-of-type {
+    margin-right: 24px;
+  }
+
+  .form__textarea {
+    height: 120px;
+  }
+
+  @media screen and (max-width: 600px) {
+    .form__group {
+      flex-direction: column;
+    }
+
+    .form__input:first-of-type {
+      margin-right: 0;
+      margin-bottom: 24px;
+    }
   }
 `;
 

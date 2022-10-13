@@ -59,6 +59,8 @@ const FooterContent = styled.div`
     padding: 0;
     margin: 0;
     text-align: center;
+
+    font-size: clamp(22px, 10vw, 72px);
   }
 
   display: flex;

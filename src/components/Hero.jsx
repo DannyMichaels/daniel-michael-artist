@@ -20,6 +20,7 @@ function Hero() {
 
         <HeroTextContainer>
           <div className="hero-text">
+            <h2>Introducing</h2>
             <h1>Daniel Michael</h1>
             <h4>Singer | Song Writer | Producer | Performer</h4>
           </div>
@@ -69,6 +70,14 @@ const HeroTextContainer = styled.div`
       font-size: 40px;
       text-align: left;
       text-transform: uppercase;
+
+      font-size: clamp(22px, 10vw, 128px);
+      max-width: 300px;
+      padding: 0;
+      margin: 0;
+
+      margin-top: 12px;
+      margin-bottom: 12px;
     }
 
     h4 {
@@ -76,6 +85,18 @@ const HeroTextContainer = styled.div`
       text-transform: uppercase;
       font-weight: 300;
       line-height: 24px;
+      font-size: clamp(14px, 2vw, 24px);
+    }
+
+    h2 {
+      margin: 0;
+      padding: 0;
+      font-family: 'Exo', sans-serif;
+      font-size: 24px;
+      text-transform: uppercase;
+      font-weight: 300;
+      line-height: 24px;
+      font-size: clamp(14px, 2vw, 24px);
     }
   }
 
