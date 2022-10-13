@@ -1,6 +1,6 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
-})
+});
 
 module.exports = {
   siteMetadata: {
@@ -24,6 +24,13 @@ module.exports = {
         path: `${__dirname}/src/assets/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `icons`,
+        path: `${__dirname}/src/assets/icons`,
+      },
+    },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
@@ -35,16 +42,16 @@ module.exports = {
         fonts: {
           google: [
             {
-              family: "Kodchasan",
-              variants: ["400", "500", "600", "700"],
+              family: 'Kodchasan',
+              variants: ['400', '500', '600', '700'],
             },
             {
-              family: "Exo",
-              variants: ["300", "400", "500", "600", "700"],
+              family: 'Exo',
+              variants: ['300', '400', '500', '600', '700'],
             },
           ],
         },
       },
     },
   ],
-}
+};

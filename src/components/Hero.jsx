@@ -14,6 +14,8 @@ function Hero() {
         layout="fullWidth"
       />
 
+      <HeroBackground />
+
       <HeroTextContainer>
         <div className="hero-text">
           <h1>Daniel Michael</h1>
@@ -37,17 +39,23 @@ const HeroContainer = styled.div`
   }
 `;
 
+const HeroBackground = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #000000 31.15%, rgba(0, 0, 0, 0) 47.19%);
+`;
+
 const HeroTextContainer = styled.div`
   position: absolute;
   top: 0;
   left: 10%;
-  /* width: 100%; */
   height: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  /* background: rgba(0, 0, 0, 0.4); */
-  border-radius: var(--borderRadius);
   flex-direction: column;
 
   .hero-text {
