@@ -3,6 +3,7 @@ import React from 'react';
 function SoundcloudEmbed() {
   return (
     <iframe
+      title="soundcloud"
       style={{ borderRadius: '12px', border: '1px solid #000' }}
       width="100%"
       height="450"

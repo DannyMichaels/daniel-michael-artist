@@ -61,5 +61,13 @@ module.exports = {
         },
       },
     },
+
+    {
+      resolve: 'gatsby-source-custom-api',
+      options: {
+        url: `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCALzl6bkWkTM9QZr3JeqAOw&maxResults=16&order=date&type=video&key=${process.env.YOUTUBE_API_KEY}`,
+        rootKey: 'youtubeVideos',
+      },
+    },
   ],
 };

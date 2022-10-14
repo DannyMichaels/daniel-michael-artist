@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import SectionTitle from './SectionTitle';
 import Youtube from 'react-youtube';
 
@@ -10,6 +10,7 @@ import { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { useStaticQuery, graphql } from 'gatsby';
 
 const VIDEO_PLAYER_OPTIONS = {
   height: '660',
@@ -21,25 +22,22 @@ const VIDEO_PLAYER_OPTIONS = {
 };
 
 function Videos() {
-  const [vids, setVids] = useState({ items: [] });
-  const [_isLoaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const fetchVids = async () => {
-      try {
-        const maxResults = 16;
-        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCALzl6bkWkTM9QZr3JeqAOw&maxResults=${maxResults}&order=date&type=video&key=${process.env.GATSBY_YOUTUBE_API_KEY}`;
-        const res = await fetch(url);
-
-        setVids(await res.json());
-      } catch (err) {
-        setVids({ items: [] });
-      } finally {
-        setLoaded(true);
+  const data = useStaticQuery(graphql`
+    query {
+      allYoutubeVideos {
+        nodes {
+          items {
+            etag
+            id {
+              videoId
+            }
+          }
+        }
       }
-    };
-    fetchVids();
-  }, []);
+    }
+  `);
+
+  const vids = data.allYoutubeVideos.nodes[0].items;
 
   return (
     <section className="page-section">
@@ -70,26 +68,11 @@ function Videos() {
           navigation={true}
           modules={[Pagination, Navigation]}
           className="mySwiper">
-          {vids.items?.length ? (
-            vids.items.map((vid) => (
-              <SwiperSlide key={vid.etag}>
-                <Youtube videoId={vid.id.videoId} opts={VIDEO_PLAYER_OPTIONS} />
-              </SwiperSlide>
-            ))
-          ) : (
-            <>
-              <SwiperSlide>
-                <Youtube videoId={'8xvzResJNeY'} opts={VIDEO_PLAYER_OPTIONS} />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Youtube videoId={'sRem_O3qk8o'} opts={VIDEO_PLAYER_OPTIONS} />
-              </SwiperSlide>
-
-              <SwiperSlide>
-                <Youtube videoId={'rPiDtVgdmrY'} opts={VIDEO_PLAYER_OPTIONS} />
-              </SwiperSlide>
-            </>
-          )}
+          {vids.map((vid) => (
+            <SwiperSlide key={vid.etag}>
+              <Youtube videoId={vid.id.videoId} opts={VIDEO_PLAYER_OPTIONS} />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
     </section>
