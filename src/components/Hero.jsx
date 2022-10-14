@@ -32,7 +32,7 @@ function Hero() {
         <div className="hero-text">
           <h2>Introducing</h2>
           <h1>Daniel Michael</h1>
-          <h4>Singer | Song Writer | Producer | Performer</h4>
+          <h4>Singer | Songwriter | Producer | Performer</h4>
         </div>
         <div className="hero-btn">
           <Button text="Contact Me" onClick={onContactButtonClick} />
