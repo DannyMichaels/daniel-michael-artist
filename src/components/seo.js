@@ -28,19 +28,21 @@ function Seo({ description, title, children }) {
   const metaDescription = description || site.siteMetadata.description;
   const defaultTitle = site.siteMetadata?.title;
 
+  const titleTemplate = title ? title : defaultTitle;
+
   return (
     <>
       <title>{title ? `${title} | ${defaultTitle}` : defaultTitle}</title>
       <meta name="description" content={metaDescription} />
       <meta name="image" content={site.siteMetadata?.image} />
 
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={titleTemplate} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:image" content={site.siteMetadata?.image} />
       <meta name="twitter:creator" content={site.siteMetadata?.author || ``} />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={titleTemplate} />
       <meta name="twitter:description" content={metaDescription} />
       {children}
     </>
