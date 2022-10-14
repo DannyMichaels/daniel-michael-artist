@@ -3,17 +3,30 @@ import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import Button from './Button';
 import { onContactButtonClick } from '../utils/onContactButtonClick';
+import useMediaQuery from '../hooks/useMediaQuery.hook';
 
 function Hero() {
+  const isSmScreen = useMediaQuery('(max-width: 900px)');
+
   return (
     <HeroContainer>
-      <StaticImage
-        src="../assets/images/hero.svg"
-        alt="portfolio"
-        className="hero-img"
-        placeholder="tracedSVG"
-        layout="fullWidth"
-      />
+      {isSmScreen ? (
+        <StaticImage
+          src="../assets/images/hero-mobile.jpg"
+          alt="Daniel Michael performing on stage"
+          className="hero-img"
+          placeholder="blurred"
+          layout="fullWidth"
+        />
+      ) : (
+        <StaticImage
+          src="../assets/images/hero.svg"
+          alt="Daniel Michael performing on stage"
+          className="hero-img"
+          placeholder="tracedSVG"
+          layout="fullWidth"
+        />
+      )}
 
       <HeroBackground />
 
