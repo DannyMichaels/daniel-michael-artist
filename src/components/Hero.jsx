@@ -7,40 +7,37 @@ import { onContactButtonClick } from '../utils/onContactButtonClick';
 function Hero() {
   return (
     <HeroContainer>
-      <div className="hero__inner">
-        <StaticImage
-          src="../assets/images/hero.svg"
-          alt="portfolio"
-          className="hero-img"
-          placeholder="tracedSVG"
-          layout="fullWidth"
-        />
+      <StaticImage
+        src="../assets/images/hero.svg"
+        alt="portfolio"
+        className="hero-img"
+        placeholder="tracedSVG"
+        layout="fullWidth"
+      />
 
-        <HeroBackground />
+      <HeroBackground />
 
-        <HeroTextContainer>
-          <div className="hero-text">
-            <h2>Introducing</h2>
-            <h1>Daniel Michael</h1>
-            <h4>Singer | Song Writer | Producer | Performer</h4>
-          </div>
-          <div className="hero-btn">
-            <Button text="Contact Me" onClick={onContactButtonClick} />
-          </div>
-        </HeroTextContainer>
-      </div>
+      <HeroTextContainer>
+        <div className="hero-text">
+          <h2>Introducing</h2>
+          <h1>Daniel Michael</h1>
+          <h4>Singer | Song Writer | Producer | Performer</h4>
+        </div>
+        <div className="hero-btn">
+          <Button text="Contact Me" onClick={onContactButtonClick} />
+        </div>
+      </HeroTextContainer>
     </HeroContainer>
   );
 }
 
 const HeroContainer = styled.div`
-  .hero__inner {
-    height: 100vh;
-    position: relative;
+  height: 100vh;
+  position: relative;
 
-    .hero-img {
-      height: 100%;
-    }
+  .hero-img {
+    height: 100%;
+    width: 100%;
   }
 `;
 
