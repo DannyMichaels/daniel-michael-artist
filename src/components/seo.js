@@ -34,10 +34,19 @@ function Seo({ description, title, children }) {
     <>
       <title>{title ? `${title} | ${defaultTitle}` : defaultTitle}</title>
       <meta name="description" content={metaDescription} />
-      {/* <meta name="image" content={site.siteMetadata?.image} /> */}
+      <meta
+        name="image"
+        content="https://www.danielmichaelmusic.com/og-image.jpg"
+      />
       {/* <meta name="og:image" content={site.siteMetadata?.image} /> */}
-      {/* <meta name="og:image:safe" content={site.siteMetadata?.image} /> */}
-      <meta property="og:image" content="%PUBLIC_URL%/og-image.jpg" />
+      <meta
+        name="og:image:safe"
+        content="https://www.danielmichaelmusic.com/og-image.jpg"
+      />
+      <meta
+        property="og:image"
+        content="https://www.danielmichaelmusic.com/og-image.jpg"
+      />
 
       <meta property="og:title" content={titleTemplate} />
       <meta property="og:description" content={metaDescription} />
