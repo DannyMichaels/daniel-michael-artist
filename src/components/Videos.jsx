@@ -32,7 +32,7 @@ function Videos() {
               <a
                 href="https://www.youtube.com/c/DanielMichael"
                 target="_blank"
-                rel="no-referrer"
+                rel="noreferrer"
                 className="link">
                 subscribe on youtube.
               </a>

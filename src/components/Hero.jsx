@@ -6,27 +6,25 @@ import { onContactButtonClick } from '../utils/onContactButtonClick';
 import useMediaQuery from '../hooks/useMediaQuery.hook';
 
 function Hero() {
-  const isSmScreen = useMediaQuery('(max-width: 900px)');
+  // const isSmScreen = useMediaQuery('(max-width: 900px)');
 
   return (
     <HeroContainer>
-      {isSmScreen ? (
-        <StaticImage
-          src="../assets/images/hero-mobile.jpg"
-          alt="Daniel Michael performing on stage"
-          className="hero-img"
-          placeholder="blurred"
-          layout="fullWidth"
-        />
-      ) : (
-        <StaticImage
-          src="../assets/images/hero.svg"
-          alt="Daniel Michael performing on stage"
-          className="hero-img"
-          placeholder="tracedSVG"
-          layout="fullWidth"
-        />
-      )}
+      <StaticImage
+        src="../assets/images/hero-mobile.jpg"
+        alt="Daniel Michael performing on stage"
+        className="hero-img mobile"
+        placeholder="blurred"
+        layout="fullWidth"
+      />
+
+      <StaticImage
+        src="../assets/images/hero.svg"
+        alt="Daniel Michael performing on stage"
+        className="hero-img desktop"
+        placeholder="tracedSVG"
+        layout="fullWidth"
+      />
 
       <HeroBackground />
 
@@ -51,6 +49,26 @@ const HeroContainer = styled.div`
   .hero-img {
     height: 100%;
     width: 100%;
+
+    &.mobile {
+      display: none;
+    }
+
+    &.desktop {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .hero-img {
+      &.mobile {
+        display: block;
+      }
+
+      &.desktop {
+        display: none;
+      }
+    }
   }
 `;
 
