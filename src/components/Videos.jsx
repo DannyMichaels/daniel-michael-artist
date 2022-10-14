@@ -24,20 +24,15 @@ const VIDEO_PLAYER_OPTIONS = {
 function Videos() {
   const data = useStaticQuery(graphql`
     query {
-      allYoutubeVideos {
+      allId {
         nodes {
-          items {
-            etag
-            id {
-              videoId
-            }
-          }
+          videoId
         }
       }
     }
   `);
 
-  const vids = data.allYoutubeVideos.nodes[0].items;
+  const vids = data.allId.nodes;
 
   return (
     <section className="page-section">
@@ -69,8 +64,8 @@ function Videos() {
           modules={[Pagination, Navigation]}
           className="mySwiper">
           {vids.map((vid) => (
-            <SwiperSlide key={vid.etag}>
-              <Youtube videoId={vid.id.videoId} opts={VIDEO_PLAYER_OPTIONS} />
+            <SwiperSlide key={vid.videoId}>
+              <Youtube videoId={vid.videoId} opts={VIDEO_PLAYER_OPTIONS} />
             </SwiperSlide>
           ))}
         </Swiper>
