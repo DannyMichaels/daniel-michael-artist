@@ -28,7 +28,7 @@ function Videos() {
     const fetchVids = async () => {
       try {
         const maxResults = 16;
-        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCALzl6bkWkTM9QZr3JeqAOw&maxResults=${maxResults}&order=date&type=video&key=${process.env.YOUTUBE_API_KEY}`;
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCALzl6bkWkTM9QZr3JeqAOw&maxResults=${maxResults}&order=date&type=video&key=${process.env.GATSBY_YOUTUBE_API_KEY}`;
         const res = await fetch(url);
 
         setVids(await res.json());
