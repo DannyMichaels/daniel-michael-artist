@@ -8,7 +8,7 @@ module.exports = {
     description: `Daniel Michael's artist website`,
     author: `@dannymichaels`,
     siteUrl: `https://www.danielmichaelmusic.com/`,
-    image: './src/gallery/1.jpeg',
+    image: `${__dirname}/src/gallery/1.jpeg`,
   },
   plugins: [
     {
