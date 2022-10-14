@@ -34,6 +34,7 @@ function Contact() {
               name="message"
               className="form__textarea"
               placeholder="How can I help you?"
+              required
             />
           </div>
           <Button text="Submit" type="submit" className="form__button" />
