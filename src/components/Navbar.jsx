@@ -22,7 +22,7 @@ export default function Navbar() {
     <StyledNav isBackgroundShowing={isBackgroundShowing}>
       <div className="nav__container inner-column">
         <div className="nav__logo">
-          <h1>Daniel Michael</h1>
+          {isBackgroundShowing && <h1>Daniel Michael</h1>}
         </div>
         <div className="nav__links">
           <SocialLinks />
