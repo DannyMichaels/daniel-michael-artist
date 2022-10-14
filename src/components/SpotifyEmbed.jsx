@@ -9,7 +9,6 @@ function SpotifyEmbed() {
       width="100%"
       height="450"
       frameBorder="0"
-      allowfullscreen=""
       allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
       loading="lazy"></iframe>
   );
