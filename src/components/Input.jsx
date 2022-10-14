@@ -27,7 +27,8 @@ const StyledInput = styled.input`
     line-height: 16px;
   }
 
-  &[required] {
+  // if placeholder shown that means it's empty
+  &:placeholder-shown {
     background-image: radial-gradient(red 15%, transparent 16%);
     background-size: 1em 1em;
     background-position: top right;
