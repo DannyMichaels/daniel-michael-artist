@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SectionTitle from './SectionTitle';
 import Youtube from 'react-youtube';
 
@@ -21,6 +21,26 @@ const VIDEO_PLAYER_OPTIONS = {
 };
 
 function Videos() {
+  const [vids, setVids] = useState({ items: [] });
+  const [_isLoaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const fetchVids = async () => {
+      try {
+        const maxResults = 16;
+        const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCALzl6bkWkTM9QZr3JeqAOw&maxResults=${maxResults}&order=date&type=video&key=${process.env.YOUTUBE_API_KEY}`;
+        const res = await fetch(url);
+
+        setVids(await res.json());
+      } catch (err) {
+        setVids({ items: [] });
+      } finally {
+        setLoaded(true);
+      }
+    };
+    fetchVids();
+  }, []);
+
   return (
     <section className="page-section">
       <div className="inner-column">
@@ -50,16 +70,26 @@ function Videos() {
           navigation={true}
           modules={[Pagination, Navigation]}
           className="mySwiper">
-          <SwiperSlide>
-            <Youtube videoId={'8xvzResJNeY'} opts={VIDEO_PLAYER_OPTIONS} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <Youtube videoId={'sRem_O3qk8o'} opts={VIDEO_PLAYER_OPTIONS} />
-          </SwiperSlide>
+          {vids.items?.length ? (
+            vids.items.map((vid) => (
+              <SwiperSlide key={vid.etag}>
+                <Youtube videoId={vid.id.videoId} opts={VIDEO_PLAYER_OPTIONS} />
+              </SwiperSlide>
+            ))
+          ) : (
+            <>
+              <SwiperSlide>
+                <Youtube videoId={'8xvzResJNeY'} opts={VIDEO_PLAYER_OPTIONS} />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Youtube videoId={'sRem_O3qk8o'} opts={VIDEO_PLAYER_OPTIONS} />
+              </SwiperSlide>
 
-          <SwiperSlide>
-            <Youtube videoId={'rPiDtVgdmrY'} opts={VIDEO_PLAYER_OPTIONS} />
-          </SwiperSlide>
+              <SwiperSlide>
+                <Youtube videoId={'rPiDtVgdmrY'} opts={VIDEO_PLAYER_OPTIONS} />
+              </SwiperSlide>
+            </>
+          )}
         </Swiper>
       </div>
     </section>
