@@ -8,6 +8,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
+import image from '../../static/og-image.jpg';
 
 function Seo({ description, title, children }) {
   const { site } = useStaticQuery(
@@ -30,7 +31,7 @@ function Seo({ description, title, children }) {
 
   const titleTemplate = title ? title : defaultTitle;
 
-  const image = '../../og-image.jpg';
+  // const image = '../../og-image.jpg';
 
   return (
     <>
