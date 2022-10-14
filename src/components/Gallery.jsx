@@ -29,7 +29,7 @@ function Gallery() {
   return (
     <Wrapper className="page-section gallery">
       <div className="inner-column">
-        <SectionTitle title="My Gallery" />
+        <SectionTitle title="Gallery" />
 
         <FlipMove>
           <Grid>

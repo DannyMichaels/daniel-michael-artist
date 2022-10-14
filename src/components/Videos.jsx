@@ -26,7 +26,18 @@ function Videos() {
       <div className="inner-column">
         <SectionTitle
           title="Videos"
-          subtitle="Watch the latest videos and subscribe on youtube."
+          subtitle={
+            <span>
+              Watch the latest videos and&nbsp;
+              <a
+                href="https://www.youtube.com/c/DanielMichael"
+                target="_blank"
+                rel="no-referrer"
+                className="link">
+                subscribe on youtube.
+              </a>
+            </span>
+          }
         />
 
         <Swiper
