@@ -4,11 +4,10 @@ import Youtube from 'react-youtube';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper';
+import { Navigation } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -57,12 +56,8 @@ function Videos() {
           slidesPerView={1}
           spaceBetween={30}
           loop={true}
-          pagination={{
-            clickable: true,
-          }}
           navigation={true}
-          modules={[Pagination, Navigation]}
-          className="mySwiper">
+          modules={[Navigation]}>
           {vids.map((vid) => (
             <SwiperSlide key={vid.videoId}>
               <Youtube videoId={vid.videoId} opts={VIDEO_PLAYER_OPTIONS} />

@@ -3,11 +3,8 @@ import { StaticImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import Button from './Button';
 import { onContactButtonClick } from '../utils/onContactButtonClick';
-import useMediaQuery from '../hooks/useMediaQuery.hook';
 
 function Hero() {
-  // const isSmScreen = useMediaQuery('(max-width: 900px)');
-
   return (
     <HeroContainer>
       <StaticImage
