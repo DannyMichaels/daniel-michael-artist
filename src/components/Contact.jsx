@@ -24,6 +24,7 @@ function Contact() {
             <Input
               className="form__input"
               name="email"
+              type="email"
               placeholder="Enter your email address"
               required
             />
