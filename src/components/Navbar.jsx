@@ -55,12 +55,20 @@ const StyledNav = styled.nav`
     width: 90%;
     margin: 36px auto;
     justify-content: space-between;
+
+    @media screen and (max-width: 500px) {
+      width: 98%;
+    }
   }
 
   .nav__logo {
     h1 {
       font-size: 36px;
       line-height: 36px;
+
+      @media screen and (max-width: 500px) {
+        display: none;
+      }
     }
   }
 `;
