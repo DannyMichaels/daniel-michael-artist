@@ -65,7 +65,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-custom-api',
       options: {
-        url: `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCALzl6bkWkTM9QZr3JeqAOw&maxResults=10&order=date&type=video&key=${process.env.YOUTUBE_API_KEY}`,
+        // url: `https://www.googleapis.com/youtube/v3/playlistItems?playlistId=PLNtco_9UQb6Bjou8bGreCTnhrvnEjLvK_&maxResults=10&key=${process.env.YOUTUBE_API_KEY}`, // playlist
+        url: `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCALzl6bkWkTM9QZr3JeqAOw&maxResults=6&order=date&type=video&key=${process.env.YOUTUBE_API_KEY}`, // all
         rootKey: 'youtubeVideos',
         schemas: {
           items: `

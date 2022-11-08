@@ -23,15 +23,16 @@ const VIDEO_PLAYER_OPTIONS = {
 function Videos() {
   const data = useStaticQuery(graphql`
     query {
-      allId {
+      allYoutubeVideos {
         nodes {
-          videoId
+          etag
+          id
         }
       }
     }
   `);
 
-  const vids = data.allId.nodes;
+  const vids = data.allYoutubeVideos.nodes;
 
   return (
     <section className="page-section">
