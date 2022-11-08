@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import SectionTitle from './SectionTitle';
 import Youtube from 'react-youtube';
+import useMediaQuery from './../hooks/useMediaQuery.hook';
+import { useStaticQuery, graphql } from 'gatsby';
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,16 +11,6 @@ import { Navigation } from 'swiper';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
-import { useStaticQuery, graphql } from 'gatsby';
-
-const VIDEO_PLAYER_OPTIONS = {
-  height: '660',
-  width: '100%',
-  playerVars: {
-    autoplay: 0,
-    controls: 1,
-  },
-};
 
 function Videos() {
   const data = useStaticQuery(graphql`
@@ -32,6 +24,20 @@ function Videos() {
   `);
 
   const vids = data.allId.nodes;
+
+  const isSmScreen = useMediaQuery('(max-width: 768px)');
+
+  const vidPlayerOpts = useMemo(() => {
+    const height = isSmScreen ? '440' : '660';
+    return {
+      height,
+      width: '100%',
+      playerVars: {
+        autoplay: 0,
+        controls: 1,
+      },
+    };
+  }, [isSmScreen]);
 
   return (
     <section className="page-section">
@@ -60,7 +66,7 @@ function Videos() {
           modules={[Navigation]}>
           {vids.map((vid) => (
             <SwiperSlide key={vid.videoId}>
-              <Youtube videoId={vid.videoId} opts={VIDEO_PLAYER_OPTIONS} />
+              <Youtube videoId={vid.videoId} opts={vidPlayerOpts} />
             </SwiperSlide>
           ))}
         </Swiper>
