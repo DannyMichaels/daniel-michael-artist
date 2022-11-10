@@ -1,7 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StaticImage } from 'gatsby-plugin-image';
-import { FaYoutube, FaFacebook, FaSpotify, FaSoundcloud } from 'react-icons/fa';
+// import { StaticImage } from 'gatsby-plugin-image';
+import {
+  FaYoutube,
+  FaFacebook,
+  FaSpotify,
+  FaSoundcloud,
+  FaInstagram,
+} from 'react-icons/fa';
 
 function SocialLinks({
   hidden = {
@@ -34,14 +40,15 @@ function SocialLinks({
       </li>
 
       {/* instagram */}
-      {/* <li>
+      <li>
         <a
           href="https://www.instagram.com/_dannymichaels/"
           target="_blank"
           rel="noreferrer">
-          <StaticImage src="../assets/icons/instagram.svg" layout="fixed" />
+          {/* <StaticImage src="../assets/icons/instagram.svg" layout="fixed" /> */}
+          <FaInstagram />
         </a>
-      </li> */}
+      </li>
 
       {/* spotify */}
       {!hidden.spotify && (
