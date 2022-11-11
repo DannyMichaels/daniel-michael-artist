@@ -6,12 +6,15 @@ import Layout from '../components/Layout';
 import Seo from '../components/seo';
 import Videos from '../components/Videos';
 import MusicCatalog from '../components/MusicCatalog';
+import Events from '../components/Events';
 
 const IndexPage = () => (
   <Layout>
     <Hero />
 
     <PageBreak />
+
+    <Events />
 
     <Videos />
 

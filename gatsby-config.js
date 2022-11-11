@@ -80,5 +80,20 @@ module.exports = {
         },
       },
     },
+
+    {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: process.env.GATSBY_AIRTABLE_API, // may instead specify via env, see below
+        concurrency: 5, // default, see using markdown and attachments for more information
+        tables: [
+          {
+            baseId: process.env.GATSBY_AIRTABLE_BASE,
+            tableName: `events`,
+            mapping: { image: `fileNode` },
+          },
+        ],
+      },
+    },
   ],
 };

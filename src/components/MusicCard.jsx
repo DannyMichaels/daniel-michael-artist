@@ -30,7 +30,7 @@ const Card = styled.div`
 
 const SongTitle = styled.h1`
   font-family: 'Exo' !important;
-  font-size: 30px;import { getImage, GatsbyImage } from 'gatsby-plugin-image';
+  font-size: 30px;
   font-weight: 600;
   color: #000;
 `;

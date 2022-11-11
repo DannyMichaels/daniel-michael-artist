@@ -12,6 +12,7 @@
     "gatsby-plugin-sharp": "^4.24.0",
     "gatsby-plugin-styled-components": "^5.24.0",
     "gatsby-plugin-webfonts": "^2.2.2",
+    "gatsby-source-airtable": "^2.3.0",
     "gatsby-source-custom-api": "^2.3.6",
     "gatsby-source-filesystem": "^4.24.0",
     "gatsby-transformer-sharp": "^4.24.0",

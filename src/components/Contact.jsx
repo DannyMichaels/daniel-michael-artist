@@ -12,7 +12,9 @@ function Contact() {
           <h1 className="form__title">CONTACT ME</h1>
 
           <div className="form__group">
-            <label htmlFor="name" className="form__label" />
+            <label htmlFor="name" className="form__label" hidden>
+              Enter Your name
+            </label>
             <Input
               className="form__input"
               name="name"
@@ -20,7 +22,9 @@ function Contact() {
               required
             />
 
-            <label htmlFor="email" className="form__label" />
+            <label htmlFor="email" className="form__label" hidden>
+              Enter your email
+            </label>
             <Input
               className="form__input"
               name="email"
@@ -30,7 +34,9 @@ function Contact() {
             />
           </div>
           <div className="form__group" style={{ marginTop: '24px' }}>
-            <label htmlFor="message" className="form__label" />
+            <label htmlFor="message" className="form__label" hidden>
+              Enter your message
+            </label>
             <TextArea
               name="message"
               className="form__textarea"
