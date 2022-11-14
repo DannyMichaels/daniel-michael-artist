@@ -5,7 +5,8 @@ require('dotenv').config({
 module.exports = {
   siteMetadata: {
     title: `Daniel Michael`,
-    description: `Daniel Michael's artist website`,
+    // description: `Daniel Michael's artist website`,
+    description: `Hailing from New York, Daniel Michael is an up and coming singer/songwriter, producer and artist with a penchant for writing infectious tunes and relatable narratives. Inspired by internationally acclaimed Artists like Billy Joel, Queen, Tears for Fears, U.K., Allan Holdsworth and Dirty Loops, Daniel Michael’s music journey began at a tender age, performing with his father’s band. Being an avid storyteller, Daniel Michael is greatly influenced by real life, drawing inspiration for his music from personal experiences, allowing him to invoke strong emotions in people. The multi-talented artist also seems to have a unique innate competency to ingeniously present music in multiple styles, all while maintaining a consistent brand. With big dreams and plenty of energy to spare, Daniel Michael seeks to reach out to audiences from all walks of life, and is well on his way to becoming one of the most phenomenal artists in our generation.`,
     author: `@dannymichaels`,
     siteUrl: `https://www.danielmichaelmusic.com/`,
     image: `https://www.danielmichaelmusic.com/og-image.jpg`,
