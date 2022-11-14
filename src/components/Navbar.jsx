@@ -57,6 +57,8 @@ const StyledNav = styled.nav`
     justify-content: space-between;
 
     @media screen and (max-width: 768px) {
+      margin: 0 auto;
+
       .nav__links {
         margin: 0 auto;
       }
