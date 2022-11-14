@@ -24,20 +24,19 @@ export default function EventCard({
         target="_blank"
         rel="noreferrer">
         <GatsbyImage image={imagePath} alt={title} />
-        <CardButton>
-          <Button
-            style={{
-              width: '100%',
-              textAlign: 'center',
-              borderRadius: '0 0 4px 4px',
-            }}
-            isLink
-            href={ticketUrl ? ticketUrl : showUrl}
-            target="_blank"
-            rel="noreferrer"
-            text={ticketUrl ? 'Purchase Tickets' : 'View More'}
-          />
-        </CardButton>
+
+        <Button
+          style={{
+            width: '100%',
+            textAlign: 'center',
+            borderRadius: '0 0 4px 4px',
+          }}
+          isLink
+          href={ticketUrl ? ticketUrl : showUrl}
+          target="_blank"
+          rel="noreferrer"
+          text={ticketUrl ? 'Purchase Tickets' : 'View More'}
+        />
       </Card>
     </ItemContainer>
   );
@@ -61,6 +60,11 @@ const Card = styled.a`
   }
 
   transition: transform 250ms ease-in-out;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 const EventTitle = styled.h1`
@@ -68,17 +72,4 @@ const EventTitle = styled.h1`
   font-size: 24px;
   font-weight: 600;
   color: #000;
-`;
-
-const CardButton = styled.div`
-  /* position: absolute; */
-  /* left: 50%; */
-  /* bottom: -78px; */
-  cursor: pointer;
-  z-index: 1;
-  width: 100%;
-  /* transform: translate(-50%, -50%); */
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
