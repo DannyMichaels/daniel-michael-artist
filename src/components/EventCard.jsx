@@ -51,10 +51,10 @@ const ItemContainer = styled.div`
 `;
 
 const Card = styled.a`
-  position: relative;
+  display: block;
   cursor: pointer;
   width: 300px;
-  display: block;
+  text-decoration: none !important;
 
   &:hover {
     transform: scale(1.04);
@@ -71,13 +71,13 @@ const EventTitle = styled.h1`
 `;
 
 const CardButton = styled.div`
-  position: absolute;
-  left: 50%;
-  bottom: -78px;
+  /* position: absolute; */
+  /* left: 50%; */
+  /* bottom: -78px; */
   cursor: pointer;
   z-index: 1;
   width: 100%;
-  transform: translate(-50%, -50%);
+  /* transform: translate(-50%, -50%); */
   display: flex;
   justify-content: center;
   align-items: center;

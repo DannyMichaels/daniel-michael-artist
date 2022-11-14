@@ -41,5 +41,5 @@ const StyledLink = styled.a`
   cursor: pointer;
   border: none;
   display: block;
-  text-decoration: none;
+  text-decoration: none !important;
 `;
