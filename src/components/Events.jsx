@@ -6,7 +6,7 @@ import SectionTitle from './SectionTitle';
 
 const query = graphql`
   query {
-    allAirtable {
+    allAirtable(filter: { table: { eq: "Events" } }) {
       nodes {
         id
         data {

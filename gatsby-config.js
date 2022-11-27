@@ -90,7 +90,13 @@ module.exports = {
         tables: [
           {
             baseId: process.env.GATSBY_AIRTABLE_BASE,
-            tableName: `events`,
+            tableName: `Events`,
+            mapping: { image: `fileNode` },
+          },
+
+          {
+            baseId: process.env.GATSBY_AIRTABLE_BASE,
+            tableName: `GalleryImages`,
             mapping: { image: `fileNode` },
           },
         ],

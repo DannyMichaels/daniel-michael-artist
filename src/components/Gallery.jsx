@@ -6,14 +6,36 @@ import styled from 'styled-components';
 import Button from './Button';
 import FlipMove from 'react-flip-move';
 
+// const query = graphql`
+//   query GetGalleryImages {
+//     allFile(filter: { absolutePath: { regex: "/gallery/" } }) {
+//       nodes {
+//         id
+//         name
+//         childImageSharp {
+//           gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+//         }
+//       }
+//     }
+//   }
+// `;
+
 const query = graphql`
-  query GetGalleryImages {
-    allFile(filter: { absolutePath: { regex: "/gallery/" } }) {
+  query GetAirtableGalleryImages {
+    allAirtable(
+      filter: { table: { eq: "GalleryImages" } }
+      sort: { fields: data___order, order: ASC }
+    ) {
       nodes {
         id
-        name
-        childImageSharp {
-          gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
+        data {
+          image {
+            localFiles {
+              childrenImageSharp {
+                gatsbyImageData(placeholder: BLURRED)
+              }
+            }
+          }
         }
       }
     }
@@ -23,7 +45,8 @@ const query = graphql`
 function Gallery() {
   const [showMore, setShowMore] = useState(false);
   const data = useStaticQuery(query);
-  const nodes = data.allFile.nodes;
+  // const nodes = data.allFile.nodes;
+  const nodes = data.allAirtable.nodes;
   const nodesToDisplay = showMore ? nodes : nodes.slice(0, 6);
 
   return (
@@ -34,8 +57,14 @@ function Gallery() {
         <FlipMove>
           <Grid>
             {nodesToDisplay.map((node, idx, arr) => {
-              const { id, childImageSharp: image } = node;
-              const imageSrc = getImage(image);
+              const {
+                id /* childImageSharp: image*/,
+                data: { image },
+              } = node;
+              // const imageSrc = getImage(image);
+              const imageSrc = getImage(
+                image?.localFiles[0].childrenImageSharp[0]
+              );
 
               return (
                 <GatsbyImage
