@@ -11,7 +11,7 @@ export default function Modal({ isOpen, setIsOpen, children }) {
 
   return (
     <ModalContainer className="modal" isOpen={isOpen}>
-      <span className="modal__close" onClick={handleClose} id="modalClose">
+      <span className="modal__close" onClick={handleClose}>
         &times;
       </span>
 
