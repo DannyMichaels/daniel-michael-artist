@@ -5,6 +5,7 @@ import { getImage, GatsbyImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import Button from './Button';
 import FlipMove from 'react-flip-move';
+import Modal from './Modal';
 
 // const query = graphql`
 //   query GetGalleryImages {
@@ -44,6 +45,8 @@ const query = graphql`
 
 function Gallery() {
   const [showMore, setShowMore] = useState(false);
+  const [modalImageId, setModalImageId] = useState(null);
+
   const data = useStaticQuery(query);
   // const nodes = data.allFile.nodes;
   const nodes = data.allAirtable.nodes;
@@ -67,12 +70,29 @@ function Gallery() {
               );
 
               return (
-                <GatsbyImage
-                  key={id}
-                  image={imageSrc}
-                  className="gallery-image"
-                  alt={`Daniel Michael gallery image ${idx} of ${arr.length}`}
-                />
+                <React.Fragment key={id}>
+                  <div
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => setModalImageId(id)}>
+                    <GatsbyImage
+                      image={imageSrc}
+                      className="gallery__image"
+                      alt={`Daniel Michael gallery image ${idx} of ${arr.length}`}
+                    />
+                  </div>
+
+                  <Modal
+                    isOpen={modalImageId === id}
+                    setIsOpen={setModalImageId}>
+                    <div style={{ maxHeight: '80vh', overflow: 'hidden' }}>
+                      <GatsbyImage
+                        image={imageSrc}
+                        className="gallery__image__modal"
+                        alt={`Daniel Michael gallery image ${idx} of ${arr.length}`}
+                      />
+                    </div>
+                  </Modal>
+                </React.Fragment>
               );
             })}
           </Grid>
@@ -111,9 +131,18 @@ const Grid = styled.div`
     grid-gap: 10px;
   }
 
-  .gallery-image {
+  .gallery__image,
+  .gallery__image__modal {
     height: 100%;
     width: 100%;
+  }
+
+  .gallery__image {
+    transition: 0.3s;
+
+    &:hover {
+      opacity: 0.7;
+    }
   }
 `;
 
