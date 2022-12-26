@@ -17,7 +17,7 @@ const IndexPage = () => (
 
     <PageBreak />
 
-    <Events />
+    {/* <Events /> */}
 
     <Videos />
 
