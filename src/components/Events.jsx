@@ -4,37 +4,37 @@ import styled from 'styled-components';
 import EventCard from './EventCard';
 import SectionTitle from './SectionTitle';
 
-const query = graphql`
-  query {
-    allAirtable(filter: { table: { eq: "Events" } }) {
-      nodes {
-        id
-        data {
-          title
-          date
-          address
-          showUrl
-          ticketUrl
-          time
-          locationName
-          image {
-            localFiles {
-              childrenImageSharp {
-                gatsbyImageData
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+// const query = graphql`
+//   query {
+//     allAirtable(filter: { table: { eq: "Events" } }) {
+//       nodes {
+//         id
+//         data {
+//           title
+//           date
+//           address
+//           showUrl
+//           ticketUrl
+//           time
+//           locationName
+//           image {
+//             localFiles {
+//               childrenImageSharp {
+//                 gatsbyImageData
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// `;
 
 export default function Events() {
-  const data = useStaticQuery(query);
+  // const data = useStaticQuery(query);
 
-  const events = data.allAirtable.nodes || [];
-
+  // const events = data.allAirtable.nodes || [];
+  const events = [];
   if (events.length <= 0) return null;
 
   return (
