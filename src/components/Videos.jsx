@@ -3,14 +3,7 @@ import SectionTitle from './SectionTitle';
 import Youtube from 'react-youtube';
 import useMediaQuery from './../hooks/useMediaQuery.hook';
 import { useStaticQuery, graphql } from 'gatsby';
-
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
+import Carousel from './Carousel';
 
 function Videos() {
   const data = useStaticQuery(graphql`
@@ -57,19 +50,23 @@ function Videos() {
             </span>
           }
         />
+      </div>
 
-        <Swiper
-          slidesPerView={1}
-          spaceBetween={30}
-          loop={true}
-          navigation={true}
-          modules={[Navigation]}>
-          {vids.map((vid) => (
-            <SwiperSlide key={vid.videoId}>
-              <Youtube videoId={vid.videoId} opts={vidPlayerOpts} />
-            </SwiperSlide>
+      <div>
+        <Carousel visibleItemsCount={3}>
+          {[...new Array(6).keys()].map((i, k) => (
+            <img
+              key={k}
+              src="https://via.placeholder.com/1600x300"
+              alt="placeholder"
+            />
           ))}
-        </Swiper>
+          {/* {vids.map((vid) => (
+            <div key={vid.videoId}>
+              <Youtube videoId={vid.videoId} opts={vidPlayerOpts} />
+            </div>
+          ))} */}
+        </Carousel>
       </div>
     </section>
   );

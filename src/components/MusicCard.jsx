@@ -6,7 +6,7 @@ export default function MusicCard({ title, imageSrc }) {
   return (
     <ItemContainer>
       <Card>
-        <GatsbyImage image={imageSrc} alt={title} />
+        <GatsbyImage image={imageSrc} alt={title || 'Music Card'} />
         <WishListButton>
           <StaticImage src="../assets/icons/wishlist.svg" />
         </WishListButton>

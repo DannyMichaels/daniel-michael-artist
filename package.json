@@ -23,8 +23,7 @@
     "react-flip-move": "^3.0.4",
     "react-icons": "^4.6.0",
     "react-youtube": "^10.0.0",
-    "styled-components": "^5.3.6",
-    "swiper": "^8.4.4"
+    "styled-components": "^5.3.6"
   },
   "devDependencies": {
     "prettier": "^2.7.1"

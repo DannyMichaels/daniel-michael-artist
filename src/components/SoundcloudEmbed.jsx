@@ -8,7 +8,7 @@ function SoundcloudEmbed() {
       width="100%"
       height="450"
       scrolling="no"
-      frameborder="no"
+      frameBorder="no"
       allow="autoplay"
       src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1511862688&color=%230e0e0e&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
   );

@@ -23,7 +23,7 @@ export default function EventCard({
         href={ticketUrl ? ticketUrl : showUrl}
         target="_blank"
         rel="noreferrer">
-        <GatsbyImage image={imagePath} alt={title} />
+        <GatsbyImage image={imagePath} alt={title || 'Event'} />
 
         <Button
           style={{
