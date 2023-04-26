@@ -106,12 +106,23 @@
   outline: none;
 }
 
+/* because of inner-column */
 .left-arrow-button {
-  left: 24px;
+  left: -8%;
 }
 
 .right-arrow-button {
-  right: 24px;
+  right: -8%;
+}
+
+@media screen and (max-width: 1400px) {
+  .left-arrow-button {
+    left: 24px;
+  }
+
+  .right-arrow-button {
+    right: 24px;
+  }
 }
 
 .left-arrow {
