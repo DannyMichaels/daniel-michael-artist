@@ -44,7 +44,7 @@ const TITLES = {
   give: 'Give',
 };
 
-const __Old = () => {
+export const __OldMusicCatalog = () => {
   const data = useStaticQuery(query);
   const nodes = data.allFile.nodes;
 

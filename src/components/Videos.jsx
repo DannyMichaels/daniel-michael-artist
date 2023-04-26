@@ -1,23 +1,23 @@
 import React, { useMemo } from 'react';
 import SectionTitle from './SectionTitle';
-import Youtube from 'react-youtube';
 import useMediaQuery from './../hooks/useMediaQuery.hook';
-import { useStaticQuery, graphql } from 'gatsby';
-import Carousel from './Carousel';
+import Carousel from './Carousel/Carousel';
+import useSWR from 'swr';
+import Video from './Video';
+
+const playlistId = 'PLNtco_9UQb6Bjou8bGreCTnhrvnEjLvK_';
+const urls = [
+  `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&key=${process.env.GATSBY_YOUTUBE_API_KEY}`, // playlist
+  `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCALzl6bkWkTM9QZr3JeqAOw&maxResults=8&order=date&type=video&key=${process.env.GATSBY_YOUTUBE_API_KEY}`, // all
+];
+
+const fetchy = (...args) =>
+  import(`node-fetch`).then(({ default: fetch }) => fetch(...args));
+
+const fetcher = (...args) => fetchy(...args).then((res) => res.json());
 
 function Videos() {
-  const data = useStaticQuery(graphql`
-    query {
-      allId {
-        nodes {
-          videoId
-        }
-      }
-    }
-  `);
-
-  const vids = data.allId.nodes;
-
+  const { data, isLoading } = useSWR(urls[0], fetcher);
   const isSmScreen = useMediaQuery('(max-width: 768px)');
 
   const vidPlayerOpts = useMemo(() => {
@@ -25,15 +25,8 @@ function Videos() {
     return {
       height,
       width: '100%',
-      playerVars: {
-        autoplay: 0,
-        controls: 1,
-      },
     };
   }, [isSmScreen]);
-
-  const getImageFromId = (id) =>
-    `https://unsplash.it/${600}/${600}?image=${id}`;
 
   return (
     <section className="page-section">
@@ -55,25 +48,24 @@ function Videos() {
         />
       </div>
 
-      <div>
-        <Carousel visibleItemsCount={3}>
-          {/* {[0, 1, 2, 3, 4, 5].map((i, k) => (
-            <img src={getImageFromId(i)} alt={k} />
-          ))} */}
-
-          {[0, 1, 2, 3, 4, 5].map((i, k) => (
-            <div style={{ fontSize: 32 }} k={k}>
-              {i}
-            </div>
-          ))}
-
-          {/* {vids.map((vid) => (
-            <div key={vid.videoId}>
-              <Youtube videoId={vid.videoId} opts={vidPlayerOpts} />
-            </div>
-          ))} */}
-        </Carousel>
-      </div>
+      <Carousel
+        visibleItemsCount={1}
+        withIndicator
+        infiniteLoop
+        wrapperClassName={'inner-column'}>
+        {isLoading || !data ? (
+          <div>Loading...</div>
+        ) : (
+          data.items.map(({ snippet }) => (
+            <Video
+              title={snippet.title}
+              key={snippet.resourceId.videoId}
+              id={snippet.resourceId.videoId}
+              iframeProps={vidPlayerOpts}
+            />
+          ))
+        )}
+      </Carousel>
     </section>
   );
 }

@@ -72,7 +72,9 @@ function Gallery() {
               return (
                 <React.Fragment key={id}>
                   <div
+                    role="presentation"
                     style={{ cursor: 'pointer' }}
+                    onKeyDown={() => setModalImageId(id)}
                     onClick={() => setModalImageId(id)}>
                     <GatsbyImage
                       image={imageSrc}

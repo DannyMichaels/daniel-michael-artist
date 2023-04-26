@@ -1,17 +1,37 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useLayoutEffect, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 
 export default function Modal({ isOpen, setIsOpen, children }) {
-  const handleClose = () => setIsOpen(null);
+  const handleClose = useCallback(() => setIsOpen(null), [setIsOpen]);
 
   useLayoutEffect(() => {
     // block scroll when modal open
     document.body.style.overflow = isOpen ? 'hidden' : 'auto';
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === 'Escape') {
+        handleClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+
+      return () => document.removeEventListener('keydown', handleKeyDown);
+    } else {
+      document.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [isOpen, handleClose]);
+
   return (
     <ModalContainer className="modal" isOpen={isOpen}>
-      <span className="modal__close" onClick={handleClose}>
+      <span
+        role="presentation"
+        className="modal__close"
+        onClick={handleClose}
+        onKeyDown={handleClose}>
         &times;
       </span>
 
