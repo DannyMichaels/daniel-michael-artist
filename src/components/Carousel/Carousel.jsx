@@ -21,6 +21,7 @@ const Carousel = ({
   indicatorClassNames,
 }) => {
   const indicatorContainerRef = React.useRef(null);
+  const [timeoutInProgress, setTimeoutInProgress] = React.useState(false); // a boolean for if timeout is im progress, used to stop user from spam clicking next or back in certain conditions
 
   /**
    * Total item
@@ -91,6 +92,7 @@ const Carousel = ({
    */
   const nextItem = () => {
     if (isRepeating || currentIndex < originalItemsLength - visibleItemsCount) {
+      setTimeoutInProgress(true);
       setCurrentIndex((prevState) => prevState + 1);
     }
   };
@@ -100,6 +102,7 @@ const Carousel = ({
    */
   const previousItem = () => {
     if (isRepeating || currentIndex > 0) {
+      setTimeoutInProgress(true);
       setCurrentIndex((prevState) => prevState - 1);
     }
   };
@@ -160,6 +163,8 @@ const Carousel = ({
         setCurrentIndex(visibleItemsCount);
       }
     }
+
+    setTimeoutInProgress(false);
   };
 
   /**
@@ -248,6 +253,10 @@ const Carousel = ({
             renderPreviousButton(previousItem, 'left-arrow-button')
           ) : (
             <button
+              style={{
+                cursor: timeoutInProgress ? 'not-allowed' : 'pointer',
+                pointerEvents: timeoutInProgress ? 'none' : 'inherit',
+              }}
               data-testid="left-button"
               onClick={previousItem}
               className="left-arrow-button">
@@ -291,6 +300,10 @@ const Carousel = ({
             renderNextButton(nextItem, 'right-arrow-button')
           ) : (
             <button
+              style={{
+                cursor: timeoutInProgress ? 'not-allowed' : 'pointer',
+                pointerEvents: timeoutInProgress ? 'none' : 'inherit',
+              }}
               data-testid="right-button"
               onClick={nextItem}
               className="right-arrow-button">
