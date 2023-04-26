@@ -32,6 +32,9 @@ function Videos() {
     };
   }, [isSmScreen]);
 
+  const getImageFromId = (id) =>
+    `https://unsplash.it/${600}/${600}?image=${id}`;
+
   return (
     <section className="page-section">
       <div className="inner-column">
@@ -54,13 +57,16 @@ function Videos() {
 
       <div>
         <Carousel visibleItemsCount={3}>
-          {[...new Array(6).keys()].map((i, k) => (
-            <img
-              key={k}
-              src="https://via.placeholder.com/1600x300"
-              alt="placeholder"
-            />
+          {/* {[0, 1, 2, 3, 4, 5].map((i, k) => (
+            <img src={getImageFromId(i)} alt={k} />
+          ))} */}
+
+          {[0, 1, 2, 3, 4, 5].map((i, k) => (
+            <div style={{ fontSize: 32 }} k={k}>
+              {i}
+            </div>
           ))}
+
           {/* {vids.map((vid) => (
             <div key={vid.videoId}>
               <Youtube videoId={vid.videoId} opts={vidPlayerOpts} />

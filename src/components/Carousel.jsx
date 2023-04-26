@@ -1,107 +1,146 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
+import { useVisibleNodes } from '../hooks/useVisibleNodes';
 
-function getClonedChildren(children, visibleItemsCount) {
-  children = [...children];
-
-  for (let i = visibleItemsCount - 1; i >= 0; i--) {
-    const itemToClone = children[i];
-    children.unshift(
-      React.cloneElement(itemToClone, {
-        key: `clone-beginning-${i}`,
-        clone: true,
-      })
-    );
-  }
-
-  for (let i = 0; i < visibleItemsCount; i++) {
-    const itemToClone = children[i];
-    children.push(
-      React.cloneElement(itemToClone, { key: `clone-end-${i}`, clone: true })
-    );
-  }
-
-  return children;
-}
-
-function Carousel({ children, visibleItemsCount = 1 }) {
+const Carousel = ({ children, visibleItemsCount = 3 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [length, setLength] = useState(children.length);
-  const [clonedChildren, setClonedChildren] = useState([]);
-  const [translateXCss, setTranslateXCss] = useState(`translateX(0px)`);
-
-  const wrapperRef = useRef(null);
-
-  useEffect(() => {
-    const clonedChildren = getClonedChildren(children, visibleItemsCount);
-    setClonedChildren(clonedChildren);
-    setLength(children.length);
-  }, [children, visibleItemsCount]);
+  const [containerWidth, setContainerWidth] = useState(0);
+  const containerRef = useRef(null);
+  const visibleNodes = useVisibleNodes(
+    'carousel__container',
+    'carousel__item',
+    currentIndex
+  );
+  const [skipTransition, setSkipTransition] = useState(false);
 
   useEffect(() => {
-    if (wrapperRef.current) {
-      setTranslateXCss(calcTranslateXCss(currentIndex, visibleItemsCount));
+    const handleResize = () => {
+      setContainerWidth(
+        containerRef.current.offsetWidth ||
+          containerRef.current.getClientBoundingRect().width
+      );
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const handlePrevClick = () => {
+    if (currentIndex === 0 % children.length) {
+      setCurrentIndex(children.length - visibleItemsCount);
+    } else {
+      setCurrentIndex((currentIndex - 1 + children.length) % children.length);
     }
-  }, [currentIndex, visibleItemsCount, wrapperRef]);
-
-  const calcTranslateXCss = (currentIndex, visibleItemsCount) => {
-    const wrapperWidth = wrapperRef.current?.offsetWidth;
-    const itemWidth = wrapperWidth / visibleItemsCount;
-
-    const translateXCss = `translateX(-${currentIndex * itemWidth}px)`;
-
-    return translateXCss;
   };
 
-  const next = () => {
-    const nextIndex = currentIndex + visibleItemsCount;
-    if (nextIndex > length - visibleItemsCount) {
+  const cloneCount = visibleItemsCount;
+
+  const clonedItems = [
+    ...children.map((child, index) =>
+      React.cloneElement(child, { key: index })
+    ),
+  ]; // cloned children
+
+  for (let i = 0; i < cloneCount; i++) {
+    clonedItems.push(React.cloneElement(children[i], { key: `clone-${i}` }));
+  }
+
+  for (let i = children.length - 1; i > children.length - 1 - cloneCount; i--) {
+    clonedItems.unshift(React.cloneElement(children[i], { key: `clone-${i}` }));
+  }
+
+  const itemWidth = Math.floor(containerWidth / visibleItemsCount);
+
+  useEffect(() => {
+    if (skipTransition) {
+      setTimeout(() => {
+        setSkipTransition(false);
+      }, 10);
+    }
+  }, [skipTransition]);
+
+  const handleNextClick = () => {
+    const translateXNext = translate - itemWidth * visibleItemsCount;
+    const lastAllowedUnclonedItem = children.length * -itemWidth;
+
+    const isOnEdgeForward = translateXNext < lastAllowedUnclonedItem;
+    if (isOnEdgeForward) {
       setCurrentIndex(0);
-    } else {
-      setCurrentIndex(nextIndex);
+      setSkipTransition(true);
+      console.log({ isOnEdgeForward });
+      setTimeout(() => {
+        setSkipTransition(true);
+      }, 750);
+      return;
     }
-    const newTranslateXCss = `translateX(-${
-      currentIndex * (100 / visibleItemsCount)
-    }%)`;
-    setTranslateXCss(newTranslateXCss);
+
+    setCurrentIndex((prevState) => prevState + 1);
   };
 
-  const prev = () => {
-    const nextIndex = currentIndex - visibleItemsCount;
-    if (nextIndex < 0) {
-      setCurrentIndex(length - visibleItemsCount);
-    } else {
-      setCurrentIndex(nextIndex);
-    }
-    const newTranslateXCss = `translateX(-${
-      currentIndex * (100 / visibleItemsCount)
-    }%)`;
-    setTranslateXCss(newTranslateXCss);
-  };
+  const translate =
+    currentIndex === 0
+      ? -(containerWidth / visibleItemsCount) * cloneCount +
+        containerWidth / visibleItemsCount / 2
+      : -currentIndex * (containerWidth / visibleItemsCount);
 
   return (
     <CarouselContainer
       visibleItemsCount={visibleItemsCount}
-      translateXCss={translateXCss}
-      length={length}>
+      containerWidth={containerWidth}
+      translate={translate}
+      skipTransition={skipTransition}
+      className="carousel__container">
       <div className="carousel-wrapper">
-        <CarouselButton onClick={prev} className="left-arrow">
+        <CarouselButton className="left-arrow" onClick={handlePrevClick}>
           &lt;
         </CarouselButton>
-
         <div className="carousel-content-wrapper">
-          <div className="carousel-content" ref={wrapperRef}>
-            {clonedChildren}
+          <div className="carousel-content" ref={containerRef}>
+            {clonedItems.map((item, index) => {
+              let isCenter = false;
+
+              const isVisible = visibleNodes.find(
+                (i) => i.getAttribute('data-key') === item.key
+              );
+
+              if (isVisible) {
+                const centerVisibleNodesIdx = Math.floor(
+                  visibleNodes.length / 2
+                );
+
+                const centerItem = visibleNodes[centerVisibleNodesIdx];
+
+                isCenter = centerItem.getAttribute('data-key') === item.key;
+              }
+
+              return (
+                <CarouselItem
+                  className="carousel__item"
+                  data-index={index}
+                  data-key={item.key}
+                  key={item.key}
+                  width={itemWidth}
+                  currentIndex={currentIndex}
+                  index={index}
+                  isVisible={isVisible}
+                  isCenter={isCenter}>
+                  {item}
+                </CarouselItem>
+              );
+            })}
           </div>
         </div>
-
-        <CarouselButton onClick={next} className="right-arrow">
+        <CarouselButton className="right-arrow" onClick={handleNextClick}>
           &gt;
         </CarouselButton>
       </div>
     </CarouselContainer>
   );
-}
+};
 
 const CarouselContainer = styled.div`
   width: 100%;
@@ -122,24 +161,21 @@ const CarouselContainer = styled.div`
 
   .carousel-content {
     display: flex;
-    transition: all 250ms linear;
+    /* gap: 20px; */
+    transition: ${({ skipTransition }) =>
+      skipTransition ? 'none' : `all 250ms ease-in-out`};
     -ms-overflow-style: none; /* hide scrollbar in IE and Edge */
     scrollbar-width: none; /* hide scrollbar in Firefox */
-
-    transform: ${({ translateXCss }) => translateXCss};
+    transform: ${({ translate, containerWidth, visibleItemsCount }) =>
+      `translateX(calc(${translate}px + (${containerWidth}px / ${
+        visibleItemsCount * 2
+      })))`};
   }
 
   /* hide scrollbar in webkit browser */
   .carousel-content::-webkit-scrollbar,
   .carousel-content::-webkit-scrollbar {
     display: none;
-  }
-
-  .carousel-content > * {
-    /* width: 100%; */
-    width: ${({ visibleItemsCount }) => `${100 / visibleItemsCount}%`};
-    flex-shrink: 0;
-    flex-grow: 1;
   }
 
   .left-arrow,
@@ -175,6 +211,20 @@ const CarouselButton = styled.button`
     color: #000;
     border: 1px solid #000;
   }
+`;
+
+const CarouselItem = styled.div`
+  /* width: ${({ visibleItemsCount }) => `${100 / visibleItemsCount}%`}; */
+  flex-shrink: 0;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${({ width }) => `${width}px`};
+  opacity: ${({ isCenter }) => (isCenter ? '1' : '0.7')};
+  background-color: grey;
+  transition: all 300ms ease;
+  border: ${({ isVisible }) => (isVisible ? '2px solid red' : '0')};
 `;
 
 export default Carousel;
