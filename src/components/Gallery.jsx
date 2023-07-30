@@ -79,7 +79,7 @@ function Gallery() {
                     <GatsbyImage
                       image={imageSrc}
                       className="gallery__image"
-                      alt={`Daniel Michael gallery image ${idx} of ${arr.length}`}
+                      alt={image?.name ?? `Daniel Michael gallery image ${idx} of ${arr.length}`}
                     />
                   </div>
 

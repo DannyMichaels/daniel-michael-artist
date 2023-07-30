@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 import Seo from '../components/seo';
 import Videos from '../components/Videos';
 import MusicCatalog from '../components/MusicCatalog';
-import Events from '../components/Events';
+// import Events from '../components/Events';
 import ScrollToTopOnMount from '../components/ScrollToTopOnMount';
 
 const IndexPage = () => (
@@ -17,7 +17,7 @@ const IndexPage = () => (
 
     <PageBreak />
 
-    <Events />
+    {/* <Events /> */}
 
     <Videos />
 
