@@ -12,6 +12,7 @@ module.exports = {
     image: `https://www.danielmichaelmusic.com/og-image.jpg`,
   },
   plugins: [
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
