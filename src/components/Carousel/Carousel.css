@@ -158,7 +158,7 @@
 @media (hover: none) and (pointer: coarse) {
   .left-arrow-button,
   .right-arrow-button {
-    display: none;
+    /* display: none; */
   }
 }
 
