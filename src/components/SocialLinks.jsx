@@ -29,7 +29,7 @@ function SocialLinks({
         </a>
       </li>
       {/* facebook */}
-      <li>
+      <li style={{ display: 'none' }}>
         <a
           href="https://www.facebook.com/DanielVocals"
           target="_blank"
@@ -40,7 +40,7 @@ function SocialLinks({
       </li>
 
       {/* instagram */}
-      <li>
+      <li style={{ display: 'none' }}>
         <a
           href="https://www.instagram.com/_dannymichaels/"
           target="_blank"
