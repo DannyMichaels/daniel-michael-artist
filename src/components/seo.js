@@ -9,7 +9,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
 
-function Seo({ description, title, children }) {
+function Seo({ description = '', title = '', children }) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -25,7 +25,7 @@ function Seo({ description, title, children }) {
     `
   );
 
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription = description || site?.siteMetadata?.description || ``;
   const defaultTitle = site.siteMetadata?.title;
 
   const titleTemplate = title ? title : defaultTitle;
@@ -38,7 +38,7 @@ function Seo({ description, title, children }) {
         name="image"
         content="https://www.danielmichaelmusic.com/og-image.jpg"
       />
-      {/* <meta name="og:image" content={site.siteMetadata?.image} /> */}
+      <meta name="og:image" content={site.siteMetadata?.image} />
       <meta
         name="og:image:safe"
         content="https://www.danielmichaelmusic.com/og-image.jpg"
@@ -56,6 +56,7 @@ function Seo({ description, title, children }) {
       <meta name="twitter:creator" content={site.siteMetadata?.author || ``} />
       <meta name="twitter:title" content={titleTemplate} />
       <meta name="twitter:description" content={metaDescription} />
+
       {children}
     </>
   );

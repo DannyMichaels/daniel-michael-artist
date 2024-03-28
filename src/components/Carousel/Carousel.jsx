@@ -253,6 +253,7 @@ const Carousel = ({
             renderPreviousButton(previousItem, 'left-arrow-button')
           ) : (
             <button
+              aria-label="Previous Item"
               style={{
                 cursor: timeoutInProgress ? 'not-allowed' : 'pointer',
                 pointerEvents: timeoutInProgress ? 'none' : 'inherit',
@@ -300,6 +301,7 @@ const Carousel = ({
             renderNextButton(nextItem, 'right-arrow-button')
           ) : (
             <button
+              aria-label="Next Item"
               style={{
                 cursor: timeoutInProgress ? 'not-allowed' : 'pointer',
                 pointerEvents: timeoutInProgress ? 'none' : 'inherit',

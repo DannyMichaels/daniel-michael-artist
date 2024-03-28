@@ -7,72 +7,62 @@ import {
   FaSpotify,
   FaSoundcloud,
   FaInstagram,
+  FaTiktok,
+  FaApple,
 } from 'react-icons/fa';
+import { useStaticQuery, graphql } from 'gatsby';
 
-function SocialLinks({
-  hidden = {
-    soundcloud: false,
-    spotify: false,
-  },
-}) {
+const iconMapper = {
+  youtube: FaYoutube,
+  facebook: FaFacebook,
+  spotify: FaSpotify,
+  soundcloud: FaSoundcloud,
+  instagram: FaInstagram,
+  tiktok: FaTiktok,
+  apple: FaApple,
+};
+
+function SocialLinks() {
+  const {
+    site: {
+      siteMetadata: { socialLinks = [] },
+    },
+  } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            socialLinks {
+              name
+              url
+              hidden
+            }
+          }
+        }
+      }
+    `
+  );
+
   return (
     <Ul>
-      {/* youtube */}
-      <li>
-        <a
-          className="youtube"
-          href="https://www.youtube.com/c/DanielMichael"
-          target="_blank"
-          rel="noreferrer">
-          {/* <StaticImage src="../assets/icons/youtube.svg" layout="fixed" /> */}
-          <FaYoutube />
-        </a>
-      </li>
-      {/* facebook */}
-      <li style={{ display: 'none' }}>
-        <a
-          href="https://www.facebook.com/DanielVocals"
-          target="_blank"
-          rel="noreferrer">
-          {/* <StaticImage src="../assets/icons/facebook.svg" layout="fixed" /> */}
-          <FaFacebook />
-        </a>
-      </li>
+      {socialLinks
+        ?.filter?.((item) => !item.hidden)
+        ?.map((item) => {
+          const Icon = iconMapper[item.name.toLowerCase()];
 
-      {/* instagram */}
-      <li style={{ display: 'none' }}>
-        <a
-          href="https://www.instagram.com/_dannymichaels/"
-          target="_blank"
-          rel="noreferrer">
-          {/* <StaticImage src="../assets/icons/instagram.svg" layout="fixed" /> */}
-          <FaInstagram />
-        </a>
-      </li>
-
-      {/* spotify */}
-      {!hidden.spotify && (
-        <li>
-          <a
-            href="https://open.spotify.com/artist/0cfoqHIECHnCCGZo0pYAVk?si=AHARgj_7T5Cwk8ZbLY1o6g"
-            target="_blank"
-            rel="noreferrer">
-            <FaSpotify />
-          </a>
-        </li>
-      )}
-
-      {/* soundcloud */}
-      {!hidden.soundcloud && (
-        <li>
-          <a
-            href="https://soundcloud.com/danielvocals"
-            target="_blank"
-            rel="noreferrer">
-            <FaSoundcloud />
-          </a>
-        </li>
-      )}
+          return (
+            <li key={item.name} aria-label="social media link">
+              <a
+                aria-label="social media link"
+                href={item.url}
+                className={item.name}
+                target="_blank"
+                rel="noreferrer">
+                <Icon />
+              </a>
+            </li>
+          );
+        })}
     </Ul>
   );
 }

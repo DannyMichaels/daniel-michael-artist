@@ -10,6 +10,43 @@ module.exports = {
     author: `@dannymichaels`,
     siteUrl: `https://www.danielmichaelmusic.com/`,
     image: `https://www.danielmichaelmusic.com/og-image.jpg`,
+    socialLinks: [
+      {
+        name: 'YouTube',
+        url: 'https://www.youtube.com/c/DanielMichael',
+        hidden: false,
+      },
+      {
+        name: 'TikTok',
+        url: 'https://www.tiktok.com/@danielmichaelmusic',
+        hidden: false,
+      },
+      {
+        name: 'Instagram',
+        url: 'https://www.instagram.com/danielmichaelmusic',
+        hidden: false,
+      },
+      {
+        name: 'Facebook',
+        url: 'https://www.facebook.com/DanielVocals',
+        hidden: false,
+      },
+      {
+        name: 'Spotify',
+        url: 'https://open.spotify.com/artist/0cfoqHIECHnCCGZo0pYAVk',
+        hidden: false,
+      },
+      {
+        name: 'Apple',
+        url: 'https://music.apple.com/us/artist/daniel-michael/380069200',
+        hidden: false,
+      },
+      {
+        name: 'SoundCloud',
+        url: 'https://soundcloud.com/danielvocals',
+        hidden: false,
+      },
+    ],
   },
   plugins: [
     `gatsby-plugin-netlify`,
