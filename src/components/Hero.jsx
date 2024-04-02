@@ -4,7 +4,17 @@ import styled from 'styled-components';
 import Button from './Button';
 import { onContactButtonClick } from '../utils/onContactButtonClick';
 
-function Hero() {
+function Hero({
+  title = 'Introducing',
+  midTitle = 'Daniel Michael',
+  subtitle = 'Singer | Songwriter | Producer | Performer',
+  ctaText = 'Contact Me',
+  onCtaClick = onContactButtonClick,
+
+  elementsShowing = {
+    textContainer: true,
+  },
+}) {
   return (
     <HeroContainer>
       <StaticImage
@@ -25,16 +35,20 @@ function Hero() {
 
       <HeroBackground />
 
-      <HeroTextContainer>
-        <div className="hero-text">
-          <h2>Introducing</h2>
-          <h1>Daniel Michael</h1>
-          <h4>Singer | Songwriter | Producer | Performer</h4>
-        </div>
-        <div className="hero-btn">
-          <Button text="Contact Me" onClick={onContactButtonClick} />
-        </div>
-      </HeroTextContainer>
+      {elementsShowing.textContainer && (
+        <HeroTextContainer>
+          <div className="hero-text">
+            <h2>{title}</h2>
+            <h1>{midTitle}</h1>
+            <h4>{subtitle}</h4>
+          </div>
+          {ctaText && (
+            <div className="hero-btn">
+              <Button text={ctaText} onClick={onCtaClick} />
+            </div>
+          )}
+        </HeroTextContainer>
+      )}
     </HeroContainer>
   );
 }

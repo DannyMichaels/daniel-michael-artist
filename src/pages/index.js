@@ -2,22 +2,18 @@ import * as React from 'react';
 import Contact from '../components/Contact';
 import Gallery from '../components/Gallery';
 import Hero from '../components/Hero';
-import Layout from '../components/Layout';
 import Seo from '../components/seo';
 import Videos from '../components/Videos';
 import MusicCatalog from '../components/MusicCatalog';
-// import Events from '../components/Events';
 import ScrollToTopOnMount from '../components/ScrollToTopOnMount';
 
 const IndexPage = () => (
-  <Layout>
+  <>
     <ScrollToTopOnMount />
 
     <Hero />
 
     <PageBreak />
-
-    {/* <Events /> */}
 
     <Videos />
 
@@ -32,7 +28,7 @@ const IndexPage = () => (
     <PageBreak />
 
     <Contact />
-  </Layout>
+  </>
 );
 
 const PageBreak = () => (

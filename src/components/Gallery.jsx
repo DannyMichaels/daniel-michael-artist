@@ -25,7 +25,7 @@ const query = graphql`
   query GetAirtableGalleryImages {
     allAirtable(
       filter: { table: { eq: "GalleryImages" } }
-      sort: { fields: data___order, order: ASC }
+      sort: { data: { order: ASC } }
     ) {
       nodes {
         id
