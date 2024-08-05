@@ -30,6 +30,8 @@ const query = graphql`
       nodes {
         id
         data {
+          alt
+          imageName
           image {
             localFiles {
               childrenImageSharp {
@@ -62,7 +64,7 @@ function Gallery() {
             {nodesToDisplay.map((node, idx, arr) => {
               const {
                 id /* childImageSharp: image*/,
-                data: { image },
+                data: { image, alt, imageName },
               } = node;
               // const imageSrc = getImage(image);
               const imageSrc = getImage(
@@ -80,8 +82,9 @@ function Gallery() {
                       image={imageSrc}
                       className="gallery__image"
                       alt={
-                        image?.name ??
-                        `Daniel Michael gallery image ${idx} of ${arr.length}`
+                        alt ||
+                        imageName ||
+                        `Daniel Michael gallery image ${idx} of ${arr.length} @danielmichaelmusic`
                       }
                     />
                   </div>
