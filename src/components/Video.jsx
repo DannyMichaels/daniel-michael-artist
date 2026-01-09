@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 
 const Video = ({ id, title, iframeProps, wrapperProps }) => {
-  const videoSrcUrl = `https://www.youtube.com/embed/${id}`;
+  const origin = typeof window !== 'undefined' ? window.location.origin : '';
+  const videoSrcUrl = `https://www.youtube-nocookie.com/embed/${id}?origin=${origin}&rel=0`;
 
   return (
     <div className="video" {...wrapperProps}>
