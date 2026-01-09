@@ -18,8 +18,8 @@ function Hero({
   return (
     <HeroContainer>
       <StaticImage
-        src="../assets/images/IMG_8559.jpg"
-        alt="Daniel Michael performing on stage"
+        src="../assets/images/hero.jpg"
+        alt="Daniel Michael holding a keytar behind him"
         className="hero-img mobile"
         placeholder="dominantColor"
         layout="fullWidth"
@@ -27,8 +27,8 @@ function Hero({
       />
 
       <StaticImage
-        src="../assets/images/IMG_8559.jpg"
-        alt="Daniel Michael performing on stage"
+        src="../assets/images/hero.jpg"
+        alt="Daniel Michael holding a keytar behind him"
         className="hero-img desktop"
         placeholder="dominantColor"
         layout="fullWidth"
