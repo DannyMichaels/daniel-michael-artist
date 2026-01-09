@@ -51,9 +51,11 @@ const StyledNav = styled.nav`
 
   .nav__container {
     display: flex;
+    align-items: center;
     max-width: 1100px;
     width: 90%;
-    margin: 36px auto;
+    margin: 10px auto;
+    padding: 0;
     justify-content: space-between;
 
     @media screen and (max-width: 768px) {
