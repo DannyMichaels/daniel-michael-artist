@@ -11,10 +11,7 @@ const urls = [
   `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UCALzl6bkWkTM9QZr3JeqAOw&maxResults=8&order=date&type=video&key=${process.env.GATSBY_YOUTUBE_API_KEY}`, // all
 ];
 
-const fetchy = (...args) =>
-  import(`node-fetch`).then(({ default: fetch }) => fetch(...args));
-
-const fetcher = (...args) => fetchy(...args).then((res) => res.json());
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 function Videos() {
   const { data, isLoading } = useSWR(urls[0], fetcher);

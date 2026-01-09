@@ -10,10 +10,12 @@ function Footer() {
     <StyledFooter>
       <div className="footer__inner">
         <StaticImage
-          src="../assets/images/footer.svg"
+          src="../assets/images/footer.png"
           layout="fullWidth"
-          placeholder="tracedSVG"
+          placeholder="dominantColor"
+          quality={100}
           className="footer-img"
+          alt="Daniel Michael with keyboard"
         />
 
         <FooterBackground />
@@ -40,9 +42,36 @@ const StyledFooter = styled.footer`
   .footer__inner {
     height: 800px;
     position: relative;
+    overflow: hidden;
+    background: #000;
 
     .footer-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
+
+      [data-main-image] {
+        object-fit: cover;
+        object-position: right center;
+      }
+    }
+
+    @media screen and (max-width: 1400px) {
+      height: 600px;
+    }
+
+    @media screen and (max-width: 1000px) {
+      height: 500px;
+    }
+
+    @media screen and (max-width: 800px) {
+      height: 400px;
+
+      .footer-img {
+        display: none;
+      }
     }
   }
 `;

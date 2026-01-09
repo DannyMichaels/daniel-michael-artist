@@ -18,19 +18,21 @@ function Hero({
   return (
     <HeroContainer>
       <StaticImage
-        src="../assets/images/hero-mobile.jpg"
+        src="../assets/images/IMG_8559.jpg"
         alt="Daniel Michael performing on stage"
         className="hero-img mobile"
-        placeholder="blurred"
+        placeholder="dominantColor"
         layout="fullWidth"
+        quality={100}
       />
 
       <StaticImage
-        src="../assets/images/hero.svg"
+        src="../assets/images/IMG_8559.jpg"
         alt="Daniel Michael performing on stage"
         className="hero-img desktop"
-        placeholder="tracedSVG"
+        placeholder="dominantColor"
         layout="fullWidth"
+        quality={100}
       />
 
       <HeroBackground />
@@ -60,7 +62,7 @@ const HeroContainer = styled.div`
   .hero-img {
     height: 100%;
     width: 100%;
-
+    object-fit: cover;
     &.mobile {
       display: none;
     }

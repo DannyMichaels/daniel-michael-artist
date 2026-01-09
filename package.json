@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Daniel Michael",
   "dependencies": {
+    "axios": "^1.13.2",
     "babel-plugin-styled-components": "^2.1.4",
     "gatsby": "^5.11.0",
     "gatsby-plugin-image": "^3.11.0",
@@ -16,13 +17,16 @@
     "gatsby-source-filesystem": "^5.11.0",
     "gatsby-transformer-sharp": "^5.11.0",
     "normalize.css": "^8.0.1",
+    "prop-types": "^15.8.1",
     "react-flip-move": "^3.0.5",
     "react-icons": "^4.10.1",
     "styled-components": "^6.0.5",
     "swr": "^2.2.0"
   },
   "devDependencies": {
-    "prettier": "^2.7.1"
+    "@img/sharp-win32-x64": "^0.34.5",
+    "prettier": "^2.7.1",
+    "sharp": "^0.34.5"
   },
   "keywords": [
     "gatsby"
@@ -43,5 +47,13 @@
   },
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "@parcel/watcher",
+      "lmdb",
+      "msgpackr-extract"
+    ]
   }
 }
