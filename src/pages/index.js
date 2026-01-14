@@ -6,6 +6,7 @@ import Seo from '../components/seo';
 import Videos from '../components/Videos';
 import MusicCatalog from '../components/MusicCatalog';
 import ScrollToTopOnMount from '../components/ScrollToTopOnMount';
+import PressReleases from '../components/PressReleases';
 
 const IndexPage = () => (
   <>
@@ -24,6 +25,10 @@ const IndexPage = () => (
     <PageBreak />
 
     <Gallery />
+
+    <PageBreak />
+
+    <PressReleases />
 
     <PageBreak />
 

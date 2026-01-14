@@ -120,6 +120,11 @@ module.exports = {
             tableName: `GalleryImages`,
             mapping: { image: `fileNode` },
           },
+          {
+            baseId: process.env.GATSBY_AIRTABLE_BASE,
+            tableName: `PressReleases`,
+            mapping: { image: `fileNode` },
+          },
         ],
       },
     },

@@ -9,7 +9,9 @@
       "Bash(cat:*)",
       "Bash(node:*)",
       "Bash(pnpm install:*)",
-      "Bash(identify:*)"
+      "Bash(identify:*)",
+      "Bash(Get-Content \"C:\\\\Users\\\\itzda\\\\projects\\\\daniel-michael-artist\\\\.env.development\")",
+      "Bash(Select-String \"GATSBY_AIRTABLE\")"
     ],
     "deny": [],
     "ask": []
